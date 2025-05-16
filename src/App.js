@@ -1,17 +1,13 @@
 import React from "react";
 
-// Load Playfair Display in your public/index.html or add it via npm/fontsource if possible
-// For quick demo, add this in public/index.html head:
-// <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet" />
-
 function Navbar() {
   return (
     <nav style={styles.nav}>
-      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+      <div style={{ display: "flex", alignItems: "center" }}>
         <img
           src="https://raw.githubusercontent.com/cyberbully666/difinearts/main/logo.jpg"
           alt="DIfinearts Logo"
-          style={{ height: 60, maxWidth: "100%", objectFit: "contain" }}
+          style={{ height: 100, objectFit: "contain", marginRight: 16 }}
         />
       </div>
       <ul style={styles.navLinks}>
@@ -39,22 +35,30 @@ function Hero() {
   );
 }
 
-function FeaturedWorks() {
+function FeaturedArtworks() {
   const artworks = [
-    { title: "Blue Dusk", artist: "Ishar K.", img: "https://via.placeholder.com/400x300?text=Blue+Dusk" },
-    { title: "Industrial Grace", artist: "Dishank M.", img: "https://via.placeholder.com/400x300?text=Industrial+Grace" },
-    { title: "Muted Light", artist: "Tanya B.", img: "https://via.placeholder.com/400x300?text=Muted+Light" }
+    {
+      title: "Abstract Colors",
+      img: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDYwMCA0MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiM5M2NkZjAiLz4KICA8Y2lyY2xlIGN4PSIyMDAiIGN5PSIxNTAiIHI9IjcwIiBmaWxsPSIjZmZjMzM2Ii8+Cjwvc3ZnPg=="
+    },
+    {
+      title: "Classic Painting",
+      img: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDYwMCA0MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiM3YjYzZmYiLz4KICA8bGluZSB4MT0iMTAwIiB5MT0iNTAiIHgyPSI1MDAiIHkyPSIzNDAiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIyMCIvPgo8L3N2Zz4="
+    },
+    {
+      title: "Modern Art",
+      img: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDYwMCA0MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiM3ZmY3YmYiLz4KICA8Y2lyY2xlIGN4PSI0MDAiIGN5PSIyMDAiIHI9Ijc1IiBmaWxsPSIjZmYzMzM2Ii8+Cjwvc3ZnPg=="
+    },
   ];
 
   return (
     <section style={styles.featuredSection}>
-      <h2 style={styles.featuredTitle}>Featured Works</h2>
-      <div style={styles.featuredGrid}>
-        {artworks.map((art, index) => (
-          <div key={index} style={styles.artworkCard}>
+      <h2 style={styles.featuredTitle}>Featured Artworks</h2>
+      <div style={styles.artworkGrid}>
+        {artworks.map((art, idx) => (
+          <div key={idx} style={styles.artworkCard}>
             <img src={art.img} alt={art.title} style={styles.artworkImage} />
-            <p style={styles.artworkTitle}>{art.title}</p>
-            <p style={styles.artworkArtist}>{art.artist}</p>
+            <h3 style={styles.artworkTitle}>{art.title}</h3>
           </div>
         ))}
       </div>
@@ -62,26 +66,16 @@ function FeaturedWorks() {
   );
 }
 
-function Footer() {
-  return (
-    <footer style={styles.footer}>
-      <p style={{ margin: 0 }}>© 2025 DIfinearts. All rights reserved.</p>
-      <div style={styles.footerLinks}>
-        <a href="#" style={styles.footerLink}>Contact</a>
-        <a href="#" style={styles.footerLink}>Instagram</a>
-        <a href="#" style={styles.footerLink}>LinkedIn</a>
-      </div>
-    </footer>
-  );
-}
+
+
+
 
 function App() {
   return (
     <div>
       <Navbar />
       <Hero />
-      <FeaturedWorks />
-      <Footer />
+      <FeaturedArtworks />
     </div>
   );
 }
@@ -91,13 +85,13 @@ const styles = {
     display: "flex",
     justifyContent: "space-between",
     padding: "20px 40px",
-    fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+    borderBottom: "1px solid #ddd",
+    fontFamily: "'Playfair Display', serif",
     alignItems: "center",
-    backgroundColor: "rgba(255, 255, 255, 0.95)",
+    backgroundColor: "#fff",
     position: "sticky",
     top: 0,
-    zIndex: 1000,
-    boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+    zIndex: 10,
   },
   navLinks: {
     listStyle: "none",
@@ -109,123 +103,98 @@ const styles = {
   navLink: {
     textDecoration: "none",
     color: "#555",
-    fontWeight: "600",
-    fontSize: "14px",
-    letterSpacing: "2px",
-    textTransform: "uppercase",
+    fontWeight: "500",
+    fontSize: "16px",
     transition: "color 0.3s",
   },
 
   hero: {
     position: "relative",
-    height: "80vh",
-    backgroundImage: "url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1470&q=80')",
+    height: "70vh",
+    backgroundImage:
+      "url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1400&q=80')",
     backgroundSize: "cover",
     backgroundPosition: "center",
     display: "flex",
-    alignItems: "center",
     justifyContent: "center",
+    alignItems: "center",
     color: "#fff",
+    fontFamily: "'Playfair Display', serif",
   },
   heroOverlay: {
     position: "absolute",
     top: 0,
     left: 0,
-    width: "100%",
-    height: "100%",
-    backgroundColor: "rgba(0,0,0,0.5)",
+    right: 0,
+    bottom: 0,
+    backgroundColor: "rgba(34, 34, 34, 0.6)",
   },
   heroContent: {
     position: "relative",
-    maxWidth: "700px",
     textAlign: "center",
+    maxWidth: "700px",
     padding: "0 20px",
   },
   heroTitle: {
-    fontFamily: "'Playfair Display', serif",
     fontSize: "3.5rem",
-    fontWeight: "600",
+    fontWeight: "700",
     marginBottom: "20px",
-    lineHeight: 1.2,
+    textShadow: "2px 2px 8px rgba(0,0,0,0.7)",
   },
   heroSubtitle: {
-    fontSize: "1.25rem",
+    fontSize: "1.5rem",
     marginBottom: "40px",
-    fontWeight: "400",
+    textShadow: "1px 1px 6px rgba(0,0,0,0.6)",
   },
   ctaButton: {
-    backgroundColor: "#222",
-    color: "#fff",
-    padding: "14px 36px",
+    backgroundColor: "#fff",
+    color: "#222",
+    padding: "14px 40px",
     border: "none",
-    borderRadius: "6px",
+    borderRadius: "30px",
     cursor: "pointer",
-    fontSize: "1.1rem",
-    fontWeight: "700",
-    letterSpacing: "1px",
+    fontSize: "1.125rem",
+    fontWeight: "600",
     transition: "background-color 0.3s",
   },
 
   featuredSection: {
-    padding: "80px 40px",
-    backgroundColor: "#fff",
-    fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+    padding: "60px 40px",
+    fontFamily: "'Playfair Display', serif",
+    backgroundColor: "#fafafa",
+    textAlign: "center",
   },
   featuredTitle: {
     fontSize: "2.5rem",
     fontWeight: "700",
-    marginBottom: "50px",
-    fontFamily: "'Playfair Display', serif",
-    textAlign: "center",
+    marginBottom: "40px",
     color: "#222",
   },
-  featuredGrid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-    gap: "40px",
-  },
-  artworkCard: {
-    textAlign: "center",
-    cursor: "pointer",
-  },
-  artworkImage: {
-    width: "100%",
-    height: "auto",
-    borderRadius: "12px",
-    boxShadow: "0 8px 20px rgba(0,0,0,0.1)",
-    transition: "transform 0.3s ease",
-  },
-  artworkTitle: {
-    marginTop: "15px",
-    fontWeight: "600",
-    fontSize: "1.1rem",
-    color: "#222",
-  },
-  artworkArtist: {
-    fontSize: "0.9rem",
-    color: "#666",
-    marginTop: "4px",
-  },
-
-  footer: {
-    backgroundColor: "#222",
-    color: "#eee",
-    padding: "40px 20px",
-    textAlign: "center",
-    fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
-  },
-  footerLinks: {
-    marginTop: "12px",
+  artworkGrid: {
     display: "flex",
     justifyContent: "center",
     gap: "30px",
+    flexWrap: "wrap",
   },
-  footerLink: {
-    color: "#eee",
-    textDecoration: "none",
+  artworkCard: {
+    backgroundColor: "#fff",
+    boxShadow: "0 8px 16px rgba(0,0,0,0.1)",
+    borderRadius: "8px",
+    overflow: "hidden",
+    maxWidth: "300px",
+    cursor: "pointer",
+    transition: "transform 0.3s",
+  },
+  artworkImage: {
+    width: "100%",
+    height: "200px",
+    objectFit: "cover",
+  },
+  artworkTitle: {
+    padding: "16px",
+    fontSize: "1.25rem",
     fontWeight: "600",
-    fontSize: "14px",
-    transition: "color 0.3s",
+    color: "#333",
   },
 };
 
