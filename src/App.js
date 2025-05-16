@@ -5,7 +5,7 @@ function Navbar() {
     <nav style={styles.nav}>
       <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
         <img
-          src="/logo.jpg"
+          src="https://raw.githubusercontent.com/cyberbully666/difinearts/refs/heads/main/logo.jpg"
           alt="DIfinearts Logo"
           style={{ height: 100, maxWidth: "100%", objectFit: "contain", marginRight: 16 }}
         />
