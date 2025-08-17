@@ -1,6 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import Gallery from "./Gallery";
 import "./App.css";
+
+// import your paintings from assets folder
+import painting1 from "./assets/artworks/painting1.jpg";
+import painting2 from "./assets/artworks/painting2.jpg";
+import painting3 from "./assets/artworks/painting3.jpg";
 
 function Navbar() {
   return (
@@ -23,32 +28,21 @@ function Navbar() {
 }
 
 function Hero() {
-  const images = [
-  "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQwMCIgaGVpZ2h0PSI3MDAiIHZpZXdCb3g9IjAgMCAxNDAwIDcwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTQwMCIgaGVpZ2h0PSI3MDAiIGZpbGw9IiNkZjFlMmYiLz48Y2lyY2xlIGN4PSI1MDAiIGN5PSIzNTAiIHI9IjEwMCIgZmlsbD0iIzg0YzJiZCIgLz48L3N2Zz4=",
-  "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQwMCIgaGVpZ2h0PSI3MDAiIHZpZXdCb3g9IjAgMCAxNDAwIDcwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTQwMCIgaGVpZ2h0PSI3MDAiIGZpbGw9IiNmY2Q2ZDIiLz48cmVjdCB4PSI1MDAiIHk9IjE1MCIgd2lkdGg9IjUwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiM2NTg4ZDUiIHJ4PSIxMDAiLz48L3N2Zz4=",
-  "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQwMCIgaGVpZ2h0PSI3MDAiIHZpZXdCb3g9IjAgMCAxNDAwIDcwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48bGluZSB4MT0iMTAwIiB5MT0iNjAwIiB4Mj0iMTMwMCIgeTI9IjEwMCIgc3Ryb2tlPSIjY2U2YzYxIiBzdHJva2Utd2lkdGg9IjE1MCIvPjxjaXJjbGUgY3g9IjcwMCIgY3k9IjM1MCIgcj0iMjAwIiBmaWxsPSIjZTUxYzU4IiAvPjwvc3ZnPg==",
-  "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQwMCIgaGVpZ2h0PSI3MDAiIHZpZXdCb3g9IjAgMCAxNDAwIDcwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTQwMCIgaGVpZ2h0PSI3MDAiIGZpbGw9IiNkNmQ2ZDYiLz48cGF0aCBkPSJNNTUwLDY1MCAgQzgwMCw0MDAgNjAwLDE1MCAzNTAsMzUwIiBzdHJva2U9IiM0NDQ0NDQiIHN0cm9rZS13aWR0aD0iMjAwIiBmaWxsPSJub25lIi8+PC9zdmc+"
-];
-
-    
-
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const images = [painting1, painting2, painting3];
+  const [current, setCurrent] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % images.length);
-    }, 4000);
+      setCurrent((prev) => (prev + 1) % images.length);
+    }, 5000); // change every 5 seconds
     return () => clearInterval(interval);
-  }, []);
+  }, [images.length]);
 
   return (
     <section
       style={{
         ...styles.hero,
-        backgroundImage: `url(${images[currentIndex]})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        transition: "background-image 1s ease-in-out",
+        backgroundImage: `url(${images[current]})`,
       }}
     >
       <div style={styles.heroOverlay}></div>
@@ -67,15 +61,15 @@ function FeaturedArtworks() {
   const artworks = [
     {
       title: "Abstract Colors",
-      img: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDYwMCA0MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiM5M2NkZjAiLz48Y2lyY2xlIGN4PSIyMDAiIGN5PSIxNTAiIHI9IjcwIiBmaWxsPSIjZmZjMzM2Ii8+PC9zdmc+",
+      img: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDYwMCA0MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiM5M2NkZjAiLz4KICA8Y2lyY2xlIGN4PSIyMDAiIGN5PSIxNTAiIHI9IjcwIiBmaWxsPSIjZmZjMzM2Ii8+Cjwvc3ZnPg=="
     },
     {
       title: "Classic Painting",
-      img: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDYwMCA0MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiM3YjYzZmYiLz48bGluZSB4MT0iMTAwIiB5MT0iNTAiIHgyPSI1MDAiIHkyPSIzNDAiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIyMCIvPjwvc3ZnPg==",
+      img: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDYwMCA0MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiM3YjYzZmYiLz4KICA8bGluZSB4MT0iMTAwIiB5MT0iNTAiIHgyPSI1MDAiIHkyPSIzNDAiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIyMCIvPgo8L3N2Zz4="
     },
     {
       title: "Modern Art",
-      img: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDYwMCA0MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiM3ZmY3YmYiLz48Y2lyY2xlIGN4PSI0MDAiIGN5PSIyMDAiIHI9Ijc1IiBmaWxsPSIjZmYzMzM2Ii8+PC9zdmc+",
+      img: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDYwMCA0MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiM3ZmY3YmYiLz4KICA8Y2lyY2xlIGN4PSI0MDAiIGN5PSIyMDAiIHI9Ijc1IiBmaWxsPSIjZmYzMzM2Ii8+Cjwvc3ZnPg=="
     },
   ];
 
@@ -132,14 +126,18 @@ const styles = {
     fontSize: "16px",
     transition: "color 0.3s",
   },
+
   hero: {
     position: "relative",
     height: "70vh",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     color: "#fff",
     fontFamily: "'Playfair Display', serif",
+    transition: "background-image 1s ease-in-out",
   },
   heroOverlay: {
     position: "absolute",
@@ -177,6 +175,7 @@ const styles = {
     fontWeight: "600",
     transition: "background-color 0.3s",
   },
+
   featuredSection: {
     padding: "60px 40px",
     fontFamily: "'Playfair Display', serif",
